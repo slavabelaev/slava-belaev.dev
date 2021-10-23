@@ -1,5 +1,5 @@
-import React from 'react';
-import {AppBar, Avatar, Hidden, IconButton, styled, Toolbar, Tooltip, Typography} from '@mui/material';
+import React, {useEffect, useState} from 'react';
+import {AppBar, Avatar, Fade, Hidden, IconButton, styled, Toolbar, Tooltip, Typography} from '@mui/material';
 import {Contact, contacts} from './Contacts';
 import SendMailButton from "./SendMailButton";
 
@@ -55,6 +55,12 @@ const AvatarWrapper = styled('div')(({ theme }) => ({
 }))
 
 export default function Header() {
+    const [fadeIn, setFadeIn] = useState(false);
+
+    useEffect(() => {
+        setFadeIn(true);
+    }, []);
+
     const renderContact = (contact: Contact, index: number) => {
         const isLast = index === (contacts.length - 1);
         return (
@@ -76,44 +82,46 @@ export default function Header() {
     }
 
     return (
-        <AppBar position="sticky">
-            <Toolbar>
-                <AvatarWrapper>
-                    <Tooltip title="My Instagram">
-                        <IconButton
-                            edge="start"
-                            target="_blank"
-                            href="https://www.instagram.com/slavabelaev/"
-                            rel="noreferrer"
-                            aria-haspopup="true"
-                        >
-                            <Avatar
-                                alt="Slava Belaev"
-                                src="https://avatars2.githubusercontent.com/u/7487565?s=80&v=4"
-                            />
-                        </IconButton>
-                    </Tooltip>
-                </AvatarWrapper>
-                <Title variant="h6">
-                    <FullNameLabel>Slava B.</FullNameLabel>
-                    <Hidden mdDown>
+        <Fade in={fadeIn} timeout={1000}>
+            <AppBar position="sticky">
+                <Toolbar>
+                    <AvatarWrapper>
+                        <Tooltip title="My Instagram">
+                            <IconButton
+                                edge="start"
+                                target="_blank"
+                                href="https://www.instagram.com/slavabelaev/"
+                                rel="noreferrer"
+                                aria-haspopup="true"
+                            >
+                                <Avatar
+                                    alt="Slava Belaev"
+                                    src="https://avatars2.githubusercontent.com/u/7487565?s=80&v=4"
+                                />
+                            </IconButton>
+                        </Tooltip>
+                    </AvatarWrapper>
+                    <Title variant="h6">
+                        <FullNameLabel>Slava B.</FullNameLabel>
+                        <Hidden mdDown>
+                            <HyphenLabel>/</HyphenLabel>
+                            <ProfessionNameLabel>Frontend Developer</ProfessionNameLabel>
+                        </Hidden>
                         <HyphenLabel>/</HyphenLabel>
-                        <ProfessionNameLabel>Frontend Developer</ProfessionNameLabel>
-                    </Hidden>
-                    <HyphenLabel>/</HyphenLabel>
-                    <PortfolioLabel>My Portfolio</PortfolioLabel>
-                </Title>
-                <Aside>
-                    <Hidden xsDown>
-                        <SendMailButton />
-                    </Hidden>
-                    <Hidden mdDown>
-                        <IconGroup>
-                            {contacts.map(renderContact)}
-                        </IconGroup>
-                    </Hidden>
-                </Aside>
-            </Toolbar>
-        </AppBar>
+                        <PortfolioLabel>My Portfolio</PortfolioLabel>
+                    </Title>
+                    <Aside>
+                        <Hidden xsDown>
+                            <SendMailButton />
+                        </Hidden>
+                        <Hidden mdDown>
+                            <IconGroup>
+                                {contacts.map(renderContact)}
+                            </IconGroup>
+                        </Hidden>
+                    </Aside>
+                </Toolbar>
+            </AppBar>
+        </Fade>
     );
 }
