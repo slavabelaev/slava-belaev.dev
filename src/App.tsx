@@ -24,6 +24,7 @@ const BodyContainer = styled(Container)(({ theme }) => ({
         backgroundPosition: '100% 0',
         backgroundSize: '50%',
         opacity: .1,
+        zIndex: -1,
     }
 }))
 
