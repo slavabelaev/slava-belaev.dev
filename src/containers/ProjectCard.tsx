@@ -36,7 +36,7 @@ export default function ProjectCard({ className, project }: ProjectCardProps) {
                 setPreviews(previews);
                 setFadeIn(true);
             });
-    }, []);
+    }, [name]);
 
     const renderPreview = (imageURL: string, index: number) => {
         if (index === 0) return null;
