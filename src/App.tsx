@@ -3,14 +3,13 @@ import Header from './containers/Header';
 import AppThemeProvider from './containers/ThemeProvider';
 import Projects from './containers/Projects';
 import Contacts from './containers/Contacts';
-import {Container, Hidden} from '@mui/material';
-import {styled} from '@mui/styles';
+import {Container, Hidden, styled} from '@mui/material';
 import bgImageURL from './bg.png';
 import ErrorBoundary from "./containers/ErrorBoundary";
 
 const BodyContainer = styled(Container)(({ theme }) => ({
-    paddingTop: 24,
-    paddingBottom: 24,
+    paddingTop: theme.spacing(3),
+    paddingBottom: theme.spacing(3),
     '&:before': {
         content: '""',
         display: 'block',
@@ -21,10 +20,13 @@ const BodyContainer = styled(Container)(({ theme }) => ({
         right: 0,
         backgroundImage: `url(${bgImageURL})`,
         backgroundRepeat: 'no-repeat',
-        backgroundPosition: '100% 0',
-        backgroundSize: '50%',
+        backgroundPosition: '100% 100%',
+        backgroundSize: '95vh',
         opacity: .1,
         zIndex: -1,
+        [theme.breakpoints.down('sm')]: {
+            backgroundPosition: '-15% 100%',
+        }
     }
 }))
 

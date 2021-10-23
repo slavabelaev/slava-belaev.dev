@@ -23,13 +23,6 @@ const ProfessionNameLabel = styled('span')(({ theme }) => ({
     opacity: .72
 }))
 
-const DelimiterLabel = styled('span')(({ theme }) => ({
-    marginRight: theme.spacing(1),
-    marginLeft: theme.spacing(1),
-    opacity: .24,
-    color: theme.palette.common.white
-}))
-
 const PortfolioLabel = styled('span')(({ theme }) => ({
     whiteSpace: 'nowrap',
     overflow: 'hidden',
@@ -52,6 +45,8 @@ const Aside = styled('aside')(({ theme }) => ({
 }))
 
 const IconGroup = styled('div')(({ theme }) => ({
+    display: 'flex',
+    alignItems: 'center',
     marginLeft: theme.spacing(1),
 }))
 
@@ -100,20 +95,18 @@ export default function Header() {
                     </Tooltip>
                 </AvatarWrapper>
                 <Title variant="h6">
-                    <Hidden smDown>
-                        <FullNameLabel>Slava B.</FullNameLabel>
-                    </Hidden>
+                    <FullNameLabel>Slava B.</FullNameLabel>
                     <Hidden mdDown>
-                        <HyphenLabel>—</HyphenLabel>
+                        <HyphenLabel>/</HyphenLabel>
                         <ProfessionNameLabel>Frontend Developer</ProfessionNameLabel>
                     </Hidden>
-                    <Hidden smDown>
-                        <DelimiterLabel>/</DelimiterLabel>
-                    </Hidden>
+                    <HyphenLabel>/</HyphenLabel>
                     <PortfolioLabel>My Portfolio</PortfolioLabel>
                 </Title>
                 <Aside>
-                    <SendMailButton />
+                    <Hidden xsDown>
+                        <SendMailButton />
+                    </Hidden>
                     <Hidden mdDown>
                         <IconGroup>
                             {contacts.map(renderContact)}

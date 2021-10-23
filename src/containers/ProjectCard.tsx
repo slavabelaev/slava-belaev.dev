@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {styled} from '@mui/styles';
-import {Button, Card, CardActions, CardContent, CardMedia, Fade, Typography} from '@mui/material';
+import {Button, Card, CardActions, CardContent, CardMedia, Fade, Typography, styled} from '@mui/material';
 import {Project} from '../types/models/Project';
 import {fetchProjectPreviews} from '../services/github';
 
@@ -13,7 +12,7 @@ const PreviewCardMedia = styled(CardMedia)(({ theme }) => ({
     height: 200,
     backgroundPositionY: 'top',
     filter: 'brightness(.72)',
-    transition: '.48s',
+    transition: `${theme.transitions.duration.short}ms`,
     '&:hover': {
         filter: 'brightness(1)'
     }
