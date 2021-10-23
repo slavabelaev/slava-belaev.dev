@@ -11,4 +11,8 @@ jobs:
       - run : git config user.email github-actions@github.com
       - uses: borales/actions-yarn@v2.3.0
       - run: yarn install
-      - run: yarn deploy
+      - run: yarn build
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          publish_dir: ./build
