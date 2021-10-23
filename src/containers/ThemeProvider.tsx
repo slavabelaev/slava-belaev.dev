@@ -1,7 +1,7 @@
 import {PropsWithChildren} from 'react';
 import {createTheme, CssBaseline, ThemeProvider} from '@mui/material';
 
-export const defaultTheme = createTheme({
+export const theme = createTheme({
     palette: {
         mode: 'dark',
         primary: {
@@ -10,21 +10,11 @@ export const defaultTheme = createTheme({
     },
 });
 
-
-export const primaryTheme = createTheme({
-    palette: {
-        mode: 'dark',
-        primary: {
-            main: '#0d47a1',
-        }
-    }
-})
-
 export type AppThemeProviderProps = PropsWithChildren<{}>;
 
 export default function AppThemeProvider({ children }: AppThemeProviderProps) {
     return (
-        <ThemeProvider theme={defaultTheme}>
+        <ThemeProvider theme={theme}>
             <CssBaseline />
             {children}
         </ThemeProvider>

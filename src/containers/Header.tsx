@@ -1,8 +1,7 @@
 import React from 'react';
-import {AppBar, Avatar, Button, createTheme, Hidden, IconButton, styled, ThemeProvider, Toolbar, Tooltip, Typography} from '@mui/material';
-import {Email} from '@mui/icons-material';
-import {primaryTheme} from './ThemeProvider';
-import {Contact, contactEmail, contacts} from './Contacts';
+import {AppBar, Avatar, Hidden, IconButton, styled, Toolbar, Tooltip, Typography} from '@mui/material';
+import {Contact, contacts} from './Contacts';
+import SendMailButton from "./SendMailButton";
 
 const FullNameLabel = styled('span')(({ theme }) => ({
     whiteSpace: 'nowrap',
@@ -114,21 +113,7 @@ export default function Header() {
                     <PortfolioLabel>My Portfolio</PortfolioLabel>
                 </Title>
                 <Aside>
-                    <ThemeProvider theme={primaryTheme}>
-                        <Tooltip
-                            title={'Send message to ' + contactEmail}
-                            placement="left"
-                        >
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                href={'mailto:' + contactEmail}
-                                startIcon={<Email />}
-                            >
-                                Contact Me
-                            </Button>
-                        </Tooltip>
-                    </ThemeProvider>
+                    <SendMailButton />
                     <Hidden mdDown>
                         <IconGroup>
                             {contacts.map(renderContact)}

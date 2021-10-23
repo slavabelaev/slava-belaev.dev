@@ -3,7 +3,7 @@ import Backdrop from '@mui/material/Backdrop';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
-import LinkIcon from '@mui/icons-material/Link';
+import ShareIcon from '@mui/icons-material/Share';
 import {styled} from '@mui/styles';
 import UpworkIcon from '../icons/UpworkIcon';
 import TelegramIcon from '../icons/TelegramIcon';
@@ -32,8 +32,6 @@ export const contacts = [
         url: 'https://github.com/slavabelaev'
     },
 ];
-
-export const contactEmail = 'slav@belaev.dev';
 
 export type Contact = typeof contacts[0];
 
@@ -64,7 +62,7 @@ export default function Contacts() {
             <Backdrop open={open} />
             <SpeedDial
                 ariaLabel="Slava Belaev Contacts"
-                icon={<SpeedDialIcon icon={<LinkIcon />} />}
+                icon={<SpeedDialIcon icon={<ShareIcon />} />}
                 onClose={handleClose}
                 onOpen={handleOpen}
                 open={open}
