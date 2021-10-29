@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {AppBar, Avatar, Fade, Hidden, IconButton, styled, Toolbar, Tooltip, Typography} from '@mui/material';
-import {Contact, contacts} from './Contacts';
+import {Contact, contacts} from './Contacts/Contacts';
 import SendMailButton from "./SendMailButton";
 
 const FullNameLabel = styled('span')(({ theme }) => ({

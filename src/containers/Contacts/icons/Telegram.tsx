@@ -1,7 +1,7 @@
 import {SvgIcon, Theme} from '@mui/material';
 import {useTheme} from "@mui/styles";
 
-export default function TelegramIcon() {
+export default function Telegram() {
     const theme: Theme = useTheme();
     const { main } = theme?.palette?.primary || {};
     return (

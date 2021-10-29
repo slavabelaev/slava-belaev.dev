@@ -5,29 +5,29 @@ import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
 import ShareIcon from '@mui/icons-material/Share';
 import {styled} from '@mui/styles';
-import UpworkIcon from '../icons/UpworkIcon';
-import TelegramIcon from '../icons/TelegramIcon';
-import LinkedInIcon from '../icons/LinkedInIcon';
-import GitHubIcon from '../icons/GitHubIcon';
+import Upwork from './icons/Upwork';
+import Telegram from './icons/Telegram';
+import LinkedIn from './icons/LinkedIn';
+import GitHub from './icons/GitHub';
 
 export const contacts = [
     {
-        icon: <TelegramIcon />,
+        icon: <Telegram />,
         title: 'Telegram',
         url: 'tg://resolve?domain=slavabelaev'
     },
     {
-        icon: <UpworkIcon />,
+        icon: <Upwork />,
         title: 'Upwork',
         url: 'https://www.upwork.com/freelancers/~01e82aef512027f4ff'
     },
     {
-        icon: <LinkedInIcon />,
+        icon: <LinkedIn />,
         title: 'LinkedIn',
         url: 'https://linkedin.com/in/slava-belaev-b44b8b141/'
     },
     {
-        icon: <GitHubIcon />,
+        icon: <GitHub />,
         title: 'GitHub',
         url: 'https://github.com/slavabelaev'
     },
