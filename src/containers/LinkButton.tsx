@@ -1,7 +1,6 @@
 import {Button, createTheme, ThemeProvider} from "@mui/material";
-import React from "react";
-import {Link, useLocation} from "react-router-dom";
-import {Apps, Article} from "@mui/icons-material";
+import React, {ReactNode} from "react";
+import {Link} from "react-router-dom";
 
 export const buttonTheme = createTheme({
     palette: {
@@ -12,14 +11,13 @@ export const buttonTheme = createTheme({
     }
 })
 
+export type ActionButtonProps = {
+    to: string;
+    children: ReactNode;
+    startIcon: ReactNode
+}
 
-export default function ActionButton() {
-    const { pathname } = useLocation();
-    const isResumePage = pathname === '/resume';
-    const to = isResumePage ? '/' : '/resume';
-    const text = isResumePage ? 'See portfolio' : 'See resume';
-    const icon = isResumePage ? <Apps /> : <Article />;
-
+export default function LinkButton({ children, startIcon, to }: ActionButtonProps) {
     return (
         <ThemeProvider theme={buttonTheme}>
             <Button
@@ -28,9 +26,9 @@ export default function ActionButton() {
                 style={{ whiteSpace: 'nowrap' }}
                 variant="contained"
                 color="primary"
-                startIcon={icon}
+                startIcon={startIcon}
             >
-                {text}
+                {children}
             </Button>
         </ThemeProvider>
     )

@@ -1,9 +1,12 @@
 import React from "react";
-import {Container, Hidden, styled} from "@mui/material";
+import {Container, styled} from "@mui/material";
 import Header from "../containers/Header";
 import Projects from "../containers/Projects";
 import Contacts from "../containers/Contacts";
 import bgImageURL from "../bg.png";
+import LinkButton from "../containers/LinkButton";
+import {ROUTE_PATH} from "../AppRouter";
+import {Article} from "@mui/icons-material";
 
 const BodyContainer = styled(Container)(({ theme }) => ({
     paddingTop: theme.spacing(3),
@@ -20,7 +23,7 @@ const BodyContainer = styled(Container)(({ theme }) => ({
         backgroundRepeat: 'no-repeat',
         backgroundPosition: '100% 100%',
         backgroundSize: '95vh',
-        opacity: .1,
+        opacity: .025,
         zIndex: -1,
         [theme.breakpoints.down('sm')]: {
             backgroundPosition: '-15% 100%',
@@ -29,9 +32,21 @@ const BodyContainer = styled(Container)(({ theme }) => ({
 }))
 
 export default function HomePage() {
+    const action = (
+        <LinkButton
+            to={ROUTE_PATH.RESUME}
+            startIcon={<Article />}
+        >
+            My Resume
+        </LinkButton>
+    );
+
     return (
         <React.Fragment>
-            <Header title="Portfolio" />
+            <Header
+                title="Portfolio"
+                action={action}
+            />
             <BodyContainer maxWidth="xl">
                 <Projects />
             </BodyContainer>

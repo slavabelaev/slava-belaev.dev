@@ -11,13 +11,9 @@ const Root = styled('figure')(({ theme }) => ({
 }))
 
 const UserAvatar = styled(Avatar)(({ theme }) => ({
-    width: 240,
-    height: 240,
+    width: 200,
+    height: 200,
     marginRight: theme.spacing(4)
-}))
-
-const ProfessionName = styled(Typography)(({ theme }) => ({
-    marginBottom: theme.spacing(2)
 }))
 
 const Description = styled(Typography)(({ theme }) => ({
@@ -32,12 +28,9 @@ export default function UserInfo() {
                 src={AvatarURL}
             />
             <figcaption>
-                <Typography color="primary" variant='h3'>
+                <Typography color="primary" variant='h3' sx={{ mb: 2 }}>
                     Вячеслав Беляев
                 </Typography>
-                <ProfessionName color="textSecondary" variant='h5'>
-                    Frontend-разработчик
-                </ProfessionName>
                 <Description variant='body1'>
                     Умеренный перфекционист, позитивный, честный. Люблю писать код, не люблю review-вить. В чужих конфликтах предпочитаю сохранять нейтралитет, уважаю чужие права и частную собственность.
                 </Description>

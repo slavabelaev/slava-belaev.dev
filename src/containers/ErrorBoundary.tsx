@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link, Typography} from "@mui/material";
-import ActionButton from "./ActionButton";
+import LinkButton from "./LinkButton";
 import {styled} from "@mui/styles";
 
 const Container = styled('div')(({ theme }) => ({

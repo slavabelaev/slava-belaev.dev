@@ -10,7 +10,7 @@ import {
     Tooltip,
     Typography
 } from '@mui/material';
-import ActionButton from "./ActionButton";
+import LinkButton from "./LinkButton";
 import Logo from "./Logo";
 import Upwork from "../icons/links/Upwork";
 import LinkedIn from "../icons/links/LinkedIn";
@@ -24,11 +24,11 @@ type Link = {
 }
 
 export const links: Link[] = [
-    {
-        icon: <Instagram />,
-        title: 'Intagram',
-        url: 'https://www.instagram.com/slavabelaev'
-    },
+    // {
+    //     icon: <Instagram />,
+    //     title: 'Intagram',
+    //     url: 'https://www.instagram.com/slavabelaev'
+    // },
     {
         icon: <Upwork />,
         title: 'Upwork',
@@ -60,9 +60,10 @@ const IconGroup = styled('div')(({ theme }) => ({
 
 export type HeaderProps = {
     title: ReactNode;
+    action?: ReactNode;
 }
 
-export default function Header({ title }: HeaderProps) {
+export default function Header({ title, action }: HeaderProps) {
     const [fadeIn, setFadeIn] = useState(false);
 
     useEffect(() => {
@@ -96,7 +97,7 @@ export default function Header({ title }: HeaderProps) {
                     <Hidden smUp>
                         <Logo />
                     </Hidden>
-                    <Hidden smDown>
+                    <Hidden smDown mdUp>
                         <Breadcrumbs>
                             <Logo />
                             <Typography variant="h6">
@@ -104,8 +105,19 @@ export default function Header({ title }: HeaderProps) {
                             </Typography>
                         </Breadcrumbs>
                     </Hidden>
+                    <Hidden mdDown>
+                        <Breadcrumbs>
+                            <Logo />
+                            <Typography variant="h6">
+                                Frontend Developer
+                            </Typography>
+                            <Typography variant="h6">
+                                { title }
+                            </Typography>
+                        </Breadcrumbs>
+                    </Hidden>
                     <Aside>
-                        <ActionButton />
+                        {action}
                         <Hidden mdDown>
                             <IconGroup>
                                 {links.map(renderLink)}

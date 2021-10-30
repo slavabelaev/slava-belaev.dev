@@ -11,7 +11,11 @@ import SpecialEducation from "./SpecialEducation";
 import Sources from "./Sources";
 import UserInfo from "./UserInfo";
 import MainStack from "./MainStack";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
+import LinkButton from "../../containers/LinkButton";
+import {ROUTE_PATH} from "../../AppRouter";
+import {Apps, Article} from "@mui/icons-material";
+import Contacts from "../../containers/Contacts";
 
 const Section = styled('section')(({ theme }) => ({
     '& + &': {
@@ -32,12 +36,24 @@ export default function ResumePage() {
 
     useEffect(() => {
         setFaded(true);
-    }, [])
+    }, []);
+
+    const action = (
+        <LinkButton
+            to={ROUTE_PATH.HOME}
+            startIcon={<Apps />}
+        >
+            My Portfolio
+        </LinkButton>
+    )
 
     return (
-        <Fade in={isFaded}>
+        <Fade in={isFaded} timeout={500}>
             <div>
-                <Header title="Resume" />
+                <Header
+                    title="Resume"
+                    action={action}
+                />
                 <Container>
                     <UserInfo />
                     <Section>
@@ -71,6 +87,7 @@ export default function ResumePage() {
                         <Sources />
                     </Section>
                 </Container>
+                <Contacts />
             </div>
         </Fade>
     )
