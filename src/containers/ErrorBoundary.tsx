@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link, Typography} from "@mui/material";
-import SendMailButton from "./SendMailButton";
+import ActionButton from "./ActionButton";
 import {styled} from "@mui/styles";
 
 const Container = styled('div')(({ theme }) => ({
@@ -40,10 +40,6 @@ class ErrorBoundary extends React.Component {
                         <Typography variant="h6">Looks like I'm broke</Typography>
                         <Typography variant="body1">But soon {profileLink} will fix me</Typography>
                     </Header>
-                    <SendMailButton
-                        text='Send mail'
-                        TooltipProps={{ placement: 'bottom' }}
-                    />
                 </Container>
             );
         }

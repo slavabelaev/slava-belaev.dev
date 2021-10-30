@@ -14,13 +14,14 @@ import AlfaLogo from "../../logos/Alfa";
 import DexLogo from "../../logos/Dex";
 import UpworkLogo from "../../logos/Upwork";
 import DevStack, {TechnologyName} from "../../components/DevStack";
-import {styled} from "@mui/material";
+import {Link, styled} from "@mui/material";
 import {toDateString, toTimeBetween} from "./utils";
 
 export type ExperienceItem = {
     company: {
         logo: ReactNode;
         name: string;
+        url?: string;
     };
     startDate: string;
     endDate?: string;
@@ -32,6 +33,7 @@ const items: ExperienceItem[] = [
     {
         company: {
             name: 'Альфа-Банк',
+            url: 'https://alfabank.ru/',
             logo: <AlfaLogo fontSize="large" />
         },
         startDate: '2020-04-01',
@@ -45,6 +47,7 @@ const items: ExperienceItem[] = [
     {
         company: {
             name: 'Upwork',
+            url: 'https://upwork.com/',
             logo: <UpworkLogo fontSize="large" />
         },
         startDate: '2018-05-01',
@@ -60,6 +63,7 @@ const items: ExperienceItem[] = [
     {
         company: {
             name: 'DEX',
+            url: 'https://dex-it.ru/',
             logo: <DexLogo fontSize="large" />
         },
         startDate: '2018-02-01',
@@ -73,6 +77,7 @@ const items: ExperienceItem[] = [
     {
         company: {
             name: 'Webdelo Studio',
+            url: 'https://webdelo.org/',
             logo: <WebdeloLogo fontSize="large" />
         },
         startDate: '2017-02-01',
@@ -95,7 +100,7 @@ const items: ExperienceItem[] = [
             'Разработка сайта по продаже курсов иностранных языков Maklass',
             'Разработка шаблонов сайтов для микро-кредитных организаций',
         ],
-        stack: ['HTML', 'CSS', 'JS', 'jQuery', 'Bootstrap', 'Joomla']
+        stack: ['HTML', 'CSS', 'JS', 'jQuery', 'Bootstrap', 'Joomla', 'Wordpress']
     },
     {
         company: {
@@ -109,7 +114,7 @@ const items: ExperienceItem[] = [
             'Разработка портала государственных услуг ПМР',
             'Разработка государственных сервисов',
         ],
-        stack: ['HTML', 'CSS', 'JS', 'jQuery', 'KendoUI', 'Bootstrap', 'Joomla']
+        stack: ['HTML', 'CSS', 'JS', 'jQuery', 'KendoUI', 'Bootstrap', 'Joomla', 'Wordpress']
     }
 ]
 
@@ -133,6 +138,17 @@ export default function Experience() {
             ? toDateString(item.endDate)
             : 'настоящее время';
         const timeBetween = toTimeBetween(item.startDate, item.endDate);
+        const companyLogo = (
+            <TimelineDot color="primary">
+                {item.company.logo}
+            </TimelineDot>
+        );
+        const hasCompanyLink = item.company.url;
+        const companyLink = hasCompanyLink && (
+            <Link target="_blank" href={item.company.url}>
+                {companyLogo}
+            </Link>
+        );
         return (
             <TimelineItem>
                 <TimelineOppositeContent
@@ -146,9 +162,7 @@ export default function Experience() {
                 </TimelineOppositeContent>
                 <TimelineSeparator>
                     <TimelineConnector />
-                    <TimelineDot color="primary">
-                        {item.company.logo}
-                    </TimelineDot>
+                    {companyLink || companyLogo}
                     <TimelineConnector />
                 </TimelineSeparator>
                 <TimelineContent sx={{ py: '12px', px: 2 }}>

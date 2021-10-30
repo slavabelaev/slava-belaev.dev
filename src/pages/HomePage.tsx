@@ -35,9 +35,7 @@ export default function HomePage() {
             <BodyContainer maxWidth="xl">
                 <Projects />
             </BodyContainer>
-            <Hidden mdUp>
-                <Contacts />
-            </Hidden>
+            <Contacts />
         </React.Fragment>
     )
 }

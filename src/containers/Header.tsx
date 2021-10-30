@@ -10,9 +10,41 @@ import {
     Tooltip,
     Typography
 } from '@mui/material';
-import {Contact, contacts} from './Contacts';
-import SendMailButton from "./SendMailButton";
+import ActionButton from "./ActionButton";
 import Logo from "./Logo";
+import Upwork from "../icons/links/Upwork";
+import LinkedIn from "../icons/links/LinkedIn";
+import GitHub from "../icons/links/GitHub";
+import Instagram from "../icons/links/Instagram";
+
+type Link = {
+    icon: ReactNode;
+    title: string;
+    url: string;
+}
+
+export const links: Link[] = [
+    {
+        icon: <Instagram />,
+        title: 'Intagram',
+        url: 'https://www.instagram.com/slavabelaev'
+    },
+    {
+        icon: <Upwork />,
+        title: 'Upwork',
+        url: 'https://www.upwork.com/freelancers/~01e82aef512027f4ff'
+    },
+    {
+        icon: <LinkedIn />,
+        title: 'LinkedIn',
+        url: 'https://linkedin.com/in/slava-belaev-b44b8b141/'
+    },
+    {
+        icon: <GitHub />,
+        title: 'GitHub',
+        url: 'https://github.com/slavabelaev'
+    },
+];
 
 const Aside = styled('aside')(({ theme }) => ({
     display: 'flex',
@@ -37,21 +69,21 @@ export default function Header({ title }: HeaderProps) {
         setFadeIn(true);
     }, []);
 
-    const renderContact = (contact: Contact, index: number) => {
-        const isLast = index === (contacts.length - 1);
+    const renderLink = (item: Link, index: number) => {
+        const isLast = index === (links.length - 1);
         return (
             <Tooltip
-                key={contact.title}
-                title={contact.title}
+                key={item.title}
+                title={item.title}
             >
                 <IconButton
                     edge={isLast && 'end'}
                     target="_blank"
-                    href={contact.url}
+                    href={item.url}
                     rel="noreferrer"
                     aria-haspopup="true"
                 >
-                    {contact.icon}
+                    {item.icon}
                 </IconButton>
             </Tooltip>
         );
@@ -73,10 +105,10 @@ export default function Header({ title }: HeaderProps) {
                         </Breadcrumbs>
                     </Hidden>
                     <Aside>
-                        <SendMailButton />
+                        <ActionButton />
                         <Hidden mdDown>
                             <IconGroup>
-                                {contacts.map(renderContact)}
+                                {links.map(renderLink)}
                             </IconGroup>
                         </Hidden>
                     </Aside>
