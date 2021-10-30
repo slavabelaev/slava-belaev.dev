@@ -67,7 +67,7 @@ export default function ProjectCard({ className, project }: ProjectCardProps) {
                 </CardContent>
                 <CardActions>
                     <Button
-                        variant="contained"
+                        variant="outlined"
                         color="primary"
                         target="_blank"
                         href={demoURL}

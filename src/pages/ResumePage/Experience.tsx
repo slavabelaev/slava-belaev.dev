@@ -14,6 +14,7 @@ import DexLogo from "../../logos/Dex";
 import UpworkLogo from "../../logos/Upwork";
 import DevStack, {TechnologyName} from "../../components/DevStack";
 import {styled} from "@mui/material";
+import {toDateString, toTimeBetween} from "./utils";
 
 export type ExperienceItem = {
     company: {
@@ -73,7 +74,7 @@ const items: ExperienceItem[] = [
             logo: <WebdeloLogo />
         },
         startDate: '02-01-2017',
-        endDate: '09-01-2018',
+        endDate: '02-01-2018',
         experience: [
             'Верстка многостраничных сайтов для монолитных приложений, для российских заказчиков',
             'Создание SPA приложения для компании по поиску арендуемого жилья в Болгарии',
@@ -94,39 +95,6 @@ const items: ExperienceItem[] = [
         stack: ['HTML', 'CSS', 'JS', 'jQuery', 'KendoUI', 'Bootstrap', 'Joomla']
     }
 ]
-
-const toDateString = (dateString: string) => {
-    const date = new Date(dateString);
-    return new Intl.DateTimeFormat('ru-RU', {
-        year: 'numeric',
-        month: 'long'
-    }).format(date);
-}
-
-const toTimeBetween = (startDate: string, endDate?: string) => {
-    const startTime = new Date(startDate).getTime();
-    const endTime = endDate
-        ? new Date(endDate).getTime()
-        : new Date().getTime();
-    const oneMonthTime = 1000 * 60 * 60 * 24 * 31;
-    const timeBetween = endTime - startTime + oneMonthTime;
-    const dateBetween = new Date(timeBetween);
-    const months = dateBetween.getMonth();
-    const years = dateBetween.getFullYear() - 1970;
-
-    const intl = (new Intl.RelativeTimeFormat('ru', {
-        style: 'long'
-    }));
-
-    const monthString = months
-        ? intl.format(months, 'months').replace('через ', '')
-        : '';
-    const yearsString = years
-        ? intl.format(years, 'years').replace('через ', '')
-        : '';
-
-    return [yearsString, monthString].join(' ');
-}
 
 const Title = styled(Typography)(({ theme }) => ({
     marginBottom: theme.spacing(1)

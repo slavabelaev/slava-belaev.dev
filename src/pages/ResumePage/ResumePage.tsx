@@ -5,6 +5,7 @@ import ReduxIcon from '../../icons/Redux';
 import CRAIcon from '../../icons/CRA';
 import TypeScriptIcon from '../../icons/TypeScript';
 import AvatarURL from '../../icons/SlavaBelaev.jpg';
+import Education from "./Education";
 
 const Group = styled('div')(({ theme }) => ({
     display: 'flex',
@@ -89,6 +90,12 @@ export default function ResumePage() {
                         Опыт работы
                     </Typography>
                     <Experience />
+                </Section>
+                <Section>
+                    <Typography variant='h2'>
+                        Образование
+                    </Typography>
+                    <Education />
                 </Section>
             </main>
         </Container>
