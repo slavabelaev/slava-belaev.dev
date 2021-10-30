@@ -1,8 +1,8 @@
-import {SvgIcon} from "@mui/material";
+import {SvgIcon, SvgIconProps} from "@mui/material";
 
-export default function AntDesign() {
+export default function AntDesign(props: SvgIconProps) {
     return (
-        <SvgIcon viewBox="0 0 200 200">
+        <SvgIcon viewBox="0 0 200 200" {...props}>
             <defs>
                 <linearGradient x1="62.1023273%" y1="0%" x2="108.19718%" y2="37.8635764%" id="linearGradient-1">
                     <stop stop-color="#4285EB" offset="0%"></stop>

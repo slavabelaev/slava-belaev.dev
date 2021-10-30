@@ -31,7 +31,7 @@ const BodyContainer = styled(Container)(({ theme }) => ({
 export default function HomePage() {
     return (
         <React.Fragment>
-            <Header />
+            <Header title="Portfolio" />
             <BodyContainer maxWidth="xl">
                 <Projects />
             </BodyContainer>

@@ -6,7 +6,7 @@ export const toDateString = (dateString: string) => {
     }).format(date);
 }
 
-export const toTimeBetween = (startDate: string, endDate?: string) => {
+export const toTimeBetween = (startDate: string | Date, endDate?: string | Date) => {
     const startTime = new Date(startDate).getTime();
     const endTime = endDate
         ? new Date(endDate).getTime()

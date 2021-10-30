@@ -1,9 +1,8 @@
-import {SvgIcon, Theme} from '@mui/material';
-import {useTheme} from "@mui/styles";
+import {SvgIcon, SvgIconProps} from '@mui/material';
 
-export default function Webdelo() {
+export default function Webdelo(props: SvgIconProps) {
     return (
-        <SvgIcon viewBox="0 0 88 88" fontSize="large">
+        <SvgIcon viewBox="0 0 88 88" {...props}>
             <g transform="scale(.8) translate(10 10)">
                 <path d="M87.4 37.2V60.6C87.4 75.7 75.1 88 60 88H27.8C12.6 88 0.299988 75.7 0.299988 60.6V37.2H19.5V60.6C19.5 67.7 25.3 73.5 32.4 73.5H55.3C62.4 73.5 68.2 67.7 68.2 60.6V37.2H87.4Z" fill="#005B94"/>
                 <path d="M68.3 1.2C77.6 4.2 84.8 12 86.9 21.7H68.3V1.2ZM27.8 -0.0999985H53.9V14.4H32.4C27.3 14.4 22.9 17.4 20.8 21.7H0.899963C3.49996 9.3 14.6 -0.0999985 27.8 -0.0999985Z" fill="#009FE3"/>

@@ -1,8 +1,8 @@
-import {SvgIcon} from "@mui/material";
+import {SvgIcon, SvgIconProps} from "@mui/material";
 
-export default function Swagger() {
+export default function Swagger(props: SvgIconProps) {
 	return (
-		<SvgIcon viewBox="0 0 408.77 117.64">
+		<SvgIcon viewBox="0 0 408.77 117.64" {...props}>
 			<g>
 				<g>
 					<g>

@@ -1,42 +1,18 @@
-import React, {useEffect, useState} from 'react';
-import {AppBar, Avatar, Fade, Hidden, IconButton, styled, Toolbar, Tooltip, Typography} from '@mui/material';
-import {Contact, contacts} from './Contacts/Contacts';
+import React, {ReactNode, useEffect, useState} from 'react';
+import {
+    AppBar,
+    Breadcrumbs,
+    Fade,
+    Hidden,
+    IconButton,
+    styled,
+    Toolbar,
+    Tooltip,
+    Typography
+} from '@mui/material';
+import {Contact, contacts} from './Contacts';
 import SendMailButton from "./SendMailButton";
-
-const FullNameLabel = styled('span')(({ theme }) => ({
-    whiteSpace: 'nowrap',
-    color: theme.palette.common.white
-}))
-
-const HyphenLabel = styled('span')(({ theme }) => ({
-    marginRight: theme.spacing(1),
-    marginLeft: theme.spacing(1),
-    opacity: .24,
-    color: theme.palette.common.white
-}))
-
-const ProfessionNameLabel = styled('span')(({ theme }) => ({
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    color: theme.palette.common.white,
-    opacity: .72
-}))
-
-const PortfolioLabel = styled('span')(({ theme }) => ({
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    color: theme.palette.text.disabled
-}))
-
-const Title = styled(Typography)(({ theme }) => ({
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    color: theme.palette.common.white,
-    marginRight: theme.spacing(2)
-}))
+import Logo from "./Logo";
 
 const Aside = styled('aside')(({ theme }) => ({
     display: 'flex',
@@ -50,11 +26,11 @@ const IconGroup = styled('div')(({ theme }) => ({
     marginLeft: theme.spacing(1),
 }))
 
-const AvatarWrapper = styled('div')(({ theme }) => ({
-    marginRight: theme.spacing(1)
-}))
+export type HeaderProps = {
+    title: ReactNode;
+}
 
-export default function Header() {
+export default function Header({ title }: HeaderProps) {
     const [fadeIn, setFadeIn] = useState(false);
 
     useEffect(() => {
@@ -85,35 +61,19 @@ export default function Header() {
         <Fade in={fadeIn} timeout={1000}>
             <AppBar position="sticky">
                 <Toolbar>
-                    <AvatarWrapper>
-                        <Tooltip title="My Instagram">
-                            <IconButton
-                                edge="start"
-                                target="_blank"
-                                href="https://www.instagram.com/slavabelaev/"
-                                rel="noreferrer"
-                                aria-haspopup="true"
-                            >
-                                <Avatar
-                                    alt="Slava Belaev"
-                                    src="https://avatars2.githubusercontent.com/u/7487565?s=80&v=4"
-                                />
-                            </IconButton>
-                        </Tooltip>
-                    </AvatarWrapper>
-                    <Title variant="h6">
-                        <FullNameLabel>Slava B.</FullNameLabel>
-                        <Hidden mdDown>
-                            <HyphenLabel>/</HyphenLabel>
-                            <ProfessionNameLabel>Frontend Developer</ProfessionNameLabel>
-                        </Hidden>
-                        <HyphenLabel>/</HyphenLabel>
-                        <PortfolioLabel>My Portfolio</PortfolioLabel>
-                    </Title>
+                    <Hidden smUp>
+                        <Logo />
+                    </Hidden>
+                    <Hidden smDown>
+                        <Breadcrumbs>
+                            <Logo />
+                            <Typography variant="h6">
+                                { title }
+                            </Typography>
+                        </Breadcrumbs>
+                    </Hidden>
                     <Aside>
-                        <Hidden xsDown>
-                            <SendMailButton />
-                        </Hidden>
+                        <SendMailButton />
                         <Hidden mdDown>
                             <IconGroup>
                                 {contacts.map(renderContact)}

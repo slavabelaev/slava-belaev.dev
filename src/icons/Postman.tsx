@@ -1,8 +1,8 @@
-import {SvgIcon} from "@mui/material";
+import {SvgIcon, SvgIconProps} from "@mui/material";
 
-export default function Postman() {
+export default function Postman(props: SvgIconProps) {
     return (
-        <SvgIcon viewBox="-13.58674873666481 -3.5096047119942106 81.71274873666479 72.05384966725056">
+        <SvgIcon viewBox="-13.58674873666481 -3.5096047119942106 81.71274873666479 72.05384966725056" {...props}>
             <path d="M57.327 12.44a32 32 0 1 0-5.761 44.88c13.98-10.804 16.56-30.895 5.76-44.88z" fill="#ff6c37"/>
             <path d="M42.793 20.388L29.3 33.988l-3.813-3.92c13.28-13.28 14.613-12.08 17.307-9.68z" fill="#ffffff"/>
             <path
