@@ -11,12 +11,13 @@ import Education from "./Education/Education";
 import Sources from "./Sources";
 import UserInfo from "./UserInfo";
 import MainStack from "./MainStack";
-import React, {useEffect, useState} from "react";
+import React, {PropsWithChildren, useEffect, useState} from "react";
 import LinkButton from "../../containers/LinkButton";
 import {ROUTE_PATH} from "../../AppRouter";
 import {Apps} from "@mui/icons-material";
 import Contacts from "../../containers/Contacts";
 import ErrorBoundary from "../../containers/ErrorBoundary";
+import {useInView} from "react-hook-inview";
 
 const Section = styled('section')(({ theme }) => ({
     [theme.breakpoints.up('sm')]: {
@@ -53,6 +54,19 @@ const TotalExperience = styled('span')(({ theme }) => ({
     color: theme.palette.info.main
 }))
 
+function AnimatedSection({ children }: PropsWithChildren<{}>) {
+    const [ref, inView] = useInView();
+    return (
+        <ErrorBoundary>
+            <Fade in={inView} timeout={500}>
+                <Section ref={ref}>
+                    {children}
+                </Section>
+            </Fade>
+        </ErrorBoundary>
+    )
+}
+
 export default function ResumePage() {
     const [isFaded, setFaded] = useState(false);
     const totalExperienceTime = toTimeBetween('2013-05-01', new Date());
@@ -87,51 +101,44 @@ export default function ResumePage() {
                     action={action}
                 />
                 <Container>
-                    <ErrorBoundary>
-                        <Section>
-                            <UserInfo />
-                        </Section>
-                    </ErrorBoundary>
-                    <ErrorBoundary>
-                        <Section>
-                            <Title>
-                                Ключевые навыки
-                            </Title>
-                            <MainStack />
-                        </Section>
-                    </ErrorBoundary>
-                    <ErrorBoundary>
-                        <Section>
-                            <Title>
-                                Опыт работы — {totalExperience}
-                            </Title>
-                            <Experience />
-                        </Section>
-                    </ErrorBoundary>
-                    <ErrorBoundary>
-                        <Section>
-                            <Title>
-                                Специальное образование
-                            </Title>
-                            <Education />
-                        </Section>
-                    </ErrorBoundary>
-                    <ErrorBoundary>
-                        <Section>
-                            <Title>
-                                Курсы повышения квалификации
-                            </Title>
-                            <Courses />
-                        </Section>
-                    </ErrorBoundary>
-                    <ErrorBoundary>
-                        <Section>
-                            <Title>
-                                Основные источники знаний
-                            </Title>
-                            <Sources />
-                        </Section>
-                    </ErrorBoundary>
+                    <AnimatedSection>
+                        <UserInfo />
+                    </AnimatedSection>
+
+                    <AnimatedSection>
+                        <Title>
+                            Ключевые навыки
+                        </Title>
+                        <MainStack />
+                    </AnimatedSection>
+
+                    <AnimatedSection>
+                        <Title>
+                            Опыт работы — {totalExperience}
+                        </Title>
+                        <Experience />
+                    </AnimatedSection>
+
+                    <AnimatedSection>
+                        <Title>
+                            Специальное образование
+                        </Title>
+                        <Education />
+                    </AnimatedSection>
+
+                    <AnimatedSection>
+                        <Title>
+                            Курсы повышения квалификации
+                        </Title>
+                        <Courses />
+                    </AnimatedSection>
+
+                    <AnimatedSection>
+                        <Title>
+                            Основные источники знаний
+                        </Title>
+                        <Sources />
+                    </AnimatedSection>
                 </Container>
                 <Contacts />
             </div>

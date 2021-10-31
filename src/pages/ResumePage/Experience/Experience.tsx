@@ -1,4 +1,4 @@
-import React, {ReactNode} from 'react';
+import React, {PropsWithChildren, ReactNode} from 'react';
 import Timeline from '@mui/lab/Timeline';
 import BusinessIcon from "@mui/icons-material/Business";
 import PersonIcon from "@mui/icons-material/Person";
@@ -9,7 +9,8 @@ import UpworkLogo from "../../../logos/Upwork";
 import {TechnologyName} from "../../../components/DevStack";
 import ExperienceCard from "./ExperienceCard";
 import ExperienceTimelineItem from "./ExperienceTimelineItem";
-import {Hidden} from "@mui/material";
+import {Fade, Hidden} from "@mui/material";
+import {useInView} from "react-hook-inview";
 
 export type ExperienceItem = {
     company: {
