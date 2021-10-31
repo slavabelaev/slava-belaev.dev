@@ -13,15 +13,15 @@ export default function CourseListItem({ item }: CourseListItemProps) {
         <ListItem
             component={Link}
             target="_blank"
-            href={item.course.url}
+            href={item.course?.url || '#'}
         >
             <ListItemAvatar>
                 <Avatar>
-                    {item.company.logo}
+                    {item.company?.logo}
                 </Avatar>
             </ListItemAvatar>
             <ListItemText
-                primary={item.course.title}
+                primary={item.course?.title}
                 secondary={startDate}
             />
         </ListItem>

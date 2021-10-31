@@ -41,14 +41,14 @@ export default function CourseTimelineItem({ item }: CourseTimelineItemProps) {
             </TimelineSeparator>
             <TimelineContent sx={{ py: '12px', px: 2 }}>
                 <Title variant="h5">
-                    {item.company.name}
+                    {item.company?.name}
                 </Title>
                 <Description>
-                    <Link target="_blank" href={item.course.url}>
-                        {item.course.title}
+                    <Link target="_blank" href={item.course?.url || '#'}>
+                        {item.course?.title}
                     </Link>
                 </Description>
-                <Rating value={item.course.rating} precision={0.1} readOnly />
+                <Rating value={item.course?.rating} precision={0.1} readOnly />
             </TimelineContent>
         </TimelineItem>
     )

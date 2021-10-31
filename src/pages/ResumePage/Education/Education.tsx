@@ -1,7 +1,7 @@
 import React, {ReactNode} from "react";
 import Timeline from "@mui/lab/Timeline";
 import EducationTimelineItem from "./EducationTimelineItem";
-import {Avatar, Card, CardContent, CardHeader, Divider, Hidden, Typography} from "@mui/material";
+import {Card, CardContent, CardHeader, Divider, Hidden, Typography} from "@mui/material";
 import {toDateString} from "../utils";
 
 export type EducationItem = {
@@ -21,8 +21,8 @@ const items: EducationItem[] = [
             logo: null,
         },
         speciality: 'Автоматизированные системы обработки информации и управления',
-        startDate: '04-01-2009',
-        endDate: '04-01-2013',
+        startDate: '2009-04-01',
+        endDate: '2013-04-01',
     },
 ];
 

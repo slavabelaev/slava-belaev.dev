@@ -10,12 +10,10 @@ import {
     Tooltip,
     Typography
 } from '@mui/material';
-import LinkButton from "./LinkButton";
 import Logo from "./Logo";
 import Upwork from "../icons/links/Upwork";
 import LinkedIn from "../icons/links/LinkedIn";
 import GitHub from "../icons/links/GitHub";
-import Instagram from "../icons/links/Instagram";
 
 type Link = {
     icon: ReactNode;

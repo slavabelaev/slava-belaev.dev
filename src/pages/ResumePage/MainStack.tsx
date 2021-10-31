@@ -1,4 +1,4 @@
-import {Container, Divider, Grid, Hidden, Link, Stack, styled, SvgIconProps, Tooltip, Typography} from "@mui/material";
+import {Container, Divider, Hidden, Link, Stack, styled, SvgIconProps, Tooltip, Typography} from "@mui/material";
 import Atlassian from "../../icons/Atlassian";
 import Confluence from "../../icons/Confluence";
 import GitHub from "../../icons/GitHub";

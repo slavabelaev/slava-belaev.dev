@@ -63,7 +63,7 @@ const courses: Course[] = [
             logo: <UdemyLogo />,
             rating: 4.7,
         },
-        startDate: '12-04-2019',
+        startDate: '2019-04-12',
     },
     {
         company: {
@@ -203,11 +203,11 @@ export default function Courses() {
     const timelineCourses = (
         <div>
             <Timeline position="alternate">
-                {courses.map(renderTimelineItem)}
+                {courses?.map(renderTimelineItem)}
             </Timeline>
             <Collapse in={isExpanded}>
                 <Timeline position="alternate">
-                    {otherCourses.map(renderTimelineItem)}
+                    {otherCourses?.map(renderTimelineItem)}
                 </Timeline>
             </Collapse>
             {toggle}
@@ -217,11 +217,11 @@ export default function Courses() {
     const courseList = (
         <div>
             <List disablePadding>
-                {courses.map(renderListItem)}
+                {courses?.map(renderListItem)}
             </List>
             <Collapse in={isExpanded}>
                 <List disablePadding>
-                    {otherCourses.map(renderListItem)}
+                    {otherCourses?.map(renderListItem)}
                 </List>
             </Collapse>
             {toggle}

@@ -1,7 +1,7 @@
 import {
     Container, Fade, Hidden,
     styled,
-    Typography,
+
 } from "@mui/material";
 import Experience from "./Experience/Experience";
 import Courses from "./Courses/Courses";
@@ -14,7 +14,7 @@ import MainStack from "./MainStack";
 import React, {useEffect, useState} from "react";
 import LinkButton from "../../containers/LinkButton";
 import {ROUTE_PATH} from "../../AppRouter";
-import {Apps, Article} from "@mui/icons-material";
+import {Apps} from "@mui/icons-material";
 import Contacts from "../../containers/Contacts";
 import ErrorBoundary from "../../containers/ErrorBoundary";
 
@@ -61,7 +61,10 @@ export default function ResumePage() {
             to={ROUTE_PATH.HOME}
             startIcon={<Apps />}
         >
-            My Portfolio
+            <Hidden smDown>
+                My&nbsp;
+            </Hidden>
+            Portfolio
         </LinkButton>
     )
 
