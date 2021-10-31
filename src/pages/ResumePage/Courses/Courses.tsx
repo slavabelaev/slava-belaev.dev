@@ -1,17 +1,16 @@
 import React, {ReactNode, useState} from "react";
-import {Button, Collapse, Link, Rating, styled} from "@mui/material";
-import Typography from "@mui/material/Typography";
-import TimelineItem from "@mui/lab/TimelineItem";
-import TimelineOppositeContent from "@mui/lab/TimelineOppositeContent";
-import TimelineSeparator from "@mui/lab/TimelineSeparator";
-import TimelineConnector from "@mui/lab/TimelineConnector";
-import TimelineDot from "@mui/lab/TimelineDot";
-import TimelineContent from "@mui/lab/TimelineContent";
+import {
+    Button,
+    Collapse,
+    Hidden,
+    List,
+} from "@mui/material";
 import Timeline from "@mui/lab/Timeline";
-import {toDateString} from "./utils";
-import UdemyLogo from "../../logos/Udemy";
+import UdemyLogo from "../../../logos/Udemy";
+import CourseTimelineItem from "./CourseTimelineItem";
+import CourseListItem from "./CourseListItem";
 
-export type ExperienceItem = {
+export type Course = {
     company: {
         name: string;
         logo: ReactNode;
@@ -26,7 +25,7 @@ export type ExperienceItem = {
     endDate?: string;
 }
 
-const courses: ExperienceItem[] = [
+const courses: Course[] = [
     {
         company: {
             name: 'Udemy',
@@ -81,7 +80,7 @@ const courses: ExperienceItem[] = [
     },
 ]
 
-const otherCourses: ExperienceItem[] = [
+const otherCourses: Course[] = [
     {
         company: {
             name: 'Udemy',
@@ -175,65 +174,68 @@ const otherCourses: ExperienceItem[] = [
     },
 ]
 
-const Title = styled(Typography)(({ theme }) => ({
-    marginBottom: theme.spacing(1)
-}))
-
-const Description = styled('div')(({ theme }) => ({
-    marginBottom: theme.spacing(1)
-}))
-
 export default function Courses() {
     const [isExpanded, setExpanded] = useState(false);
     const toggleExpand = () => setExpanded(!isExpanded);
 
-    const renderItem = (item: ExperienceItem, index: number) => {
-        const startDate = toDateString(item.startDate);
-        return (
-            <TimelineItem>
-                <TimelineOppositeContent
-                    sx={{ m: 'auto 0' }}
-                    align="right"
-                    variant="body2"
-                    color="text.secondary"
-                >
-                    <Typography component="div">{startDate}</Typography>
-                </TimelineOppositeContent>
-                <TimelineSeparator>
-                    <TimelineConnector />
-                    <TimelineDot />
-                    <TimelineConnector />
-                </TimelineSeparator>
-                <TimelineContent sx={{ py: '12px', px: 2 }}>
-                    <Title variant="h5">
-                        {item.company.name}
-                    </Title>
-                    <Description>
-                        <Link target="_blank" href={item.course.url}>
-                            {item.course.title}
-                        </Link>
-                    </Description>
-                    <Rating value={item.course.rating} precision={0.1} readOnly />
-                </TimelineContent>
-            </TimelineItem>
-        )
-    }
+    const renderTimelineItem = (item: Course) => (
+        <CourseTimelineItem
+            key={item.course.title}
+            item={item}
+        />
+    );
 
-    return (
+    const renderListItem = (item: Course) => (
+        <CourseListItem
+            key={item.course.title}
+            item={item}
+        />
+    );
+
+    const toggle = (
+        <div style={{ textAlign: 'center' }}>
+            <Button onClick={toggleExpand}>
+                {isExpanded ? 'Свернуть' : 'Показать еще'}
+            </Button>
+        </div>
+    );
+
+    const timelineCourses = (
         <div>
             <Timeline position="alternate">
-                {courses.map(renderItem)}
+                {courses.map(renderTimelineItem)}
             </Timeline>
             <Collapse in={isExpanded}>
                 <Timeline position="alternate">
-                    {otherCourses.map(renderItem)}
+                    {otherCourses.map(renderTimelineItem)}
                 </Timeline>
             </Collapse>
-            <div style={{ textAlign: 'center' }}>
-                <Button onClick={toggleExpand}>
-                    {isExpanded ? 'Свернуть' : 'Показать еще'}
-                </Button>
-            </div>
+            {toggle}
         </div>
     );
+
+    const courseList = (
+        <div>
+            <List disablePadding>
+                {courses.map(renderListItem)}
+            </List>
+            <Collapse in={isExpanded}>
+                <List disablePadding>
+                    {otherCourses.map(renderListItem)}
+                </List>
+            </Collapse>
+            {toggle}
+        </div>
+    );
+
+    return (
+        <div>
+            <Hidden smDown>
+                {timelineCourses}
+            </Hidden>
+            <Hidden smUp>
+                {courseList}
+            </Hidden>
+        </div>
+    )
 }

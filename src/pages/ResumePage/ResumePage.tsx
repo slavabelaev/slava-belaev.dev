@@ -1,13 +1,13 @@
 import {
-    Container, Fade,
+    Container, Fade, Hidden,
     styled,
     Typography,
 } from "@mui/material";
-import Experience from "./Experience";
-import Courses from "./Courses";
+import Experience from "./Experience/Experience";
+import Courses from "./Courses/Courses";
 import {toTimeBetween} from "./utils";
 import Header from "../../containers/Header";
-import SpecialEducation from "./SpecialEducation";
+import Education from "./Education/Education";
 import Sources from "./Sources";
 import UserInfo from "./UserInfo";
 import MainStack from "./MainStack";
@@ -16,19 +16,37 @@ import LinkButton from "../../containers/LinkButton";
 import {ROUTE_PATH} from "../../AppRouter";
 import {Apps, Article} from "@mui/icons-material";
 import Contacts from "../../containers/Contacts";
+import ErrorBoundary from "../../containers/ErrorBoundary";
 
 const Section = styled('section')(({ theme }) => ({
-    '& + &': {
-        marginTop: theme.spacing(12)
+    [theme.breakpoints.up('sm')]: {
+        '& + &': {
+            marginTop: theme.spacing(8)
+        },
+        '&:last-child': {
+            marginBottom: theme.spacing(8)
+        },
     },
-    '&:last-child': {
-        marginBottom: theme.spacing(12)
+    [theme.breakpoints.down('sm')]: {
+        '& + &': {
+            marginTop: theme.spacing(4)
+        },
+        '&:last-child': {
+            marginBottom: theme.spacing(4)
+        },
     }
 }))
 
-const Title = styled(Typography)(({ theme }) => ({
+const Title = styled('div')(({ theme }) => ({
     textAlign: 'center',
-    marginBottom: theme.spacing(6)
+    [theme.breakpoints.down('sm')]: {
+        fontSize: theme.typography.h5.fontSize,
+        marginBottom: theme.spacing(3),
+    },
+    [theme.breakpoints.up('sm')]: {
+        fontSize: theme.typography.h4.fontSize,
+        marginBottom: theme.spacing(3),
+    }
 }))
 
 export default function ResumePage() {
@@ -55,37 +73,51 @@ export default function ResumePage() {
                     action={action}
                 />
                 <Container>
-                    <UserInfo />
-                    <Section>
-                        <Title variant='h4'>
-                            Ключевые навыки
-                        </Title>
-                        <MainStack />
-                    </Section>
-                    <Section>
-                        <Title variant='h4'>
-                            Опыт работы {toTimeBetween('2013-05-01', new Date())}
-                        </Title>
-                        <Experience />
-                    </Section>
-                    <Section>
-                        <Title variant='h4'>
-                            Специальное образование
-                        </Title>
-                        <SpecialEducation />
-                    </Section>
-                    <Section>
-                        <Title variant='h4'>
-                            Курсы повышения квалификации
-                        </Title>
-                        <Courses />
-                    </Section>
-                    <Section>
-                        <Title variant='h4'>
-                            Основные источники знаний
-                        </Title>
-                        <Sources />
-                    </Section>
+                    <ErrorBoundary>
+                        <Section>
+                            <UserInfo />
+                        </Section>
+                    </ErrorBoundary>
+                    <ErrorBoundary>
+                        <Section>
+                            <Title>
+                                Ключевые навыки
+                            </Title>
+                            <MainStack />
+                        </Section>
+                    </ErrorBoundary>
+                    <ErrorBoundary>
+                        <Section>
+                            <Title>
+                                Опыт работы {toTimeBetween('2013-05-01', new Date())}
+                            </Title>
+                            <Experience />
+                        </Section>
+                    </ErrorBoundary>
+                    <ErrorBoundary>
+                        <Section>
+                            <Title>
+                                Специальное образование
+                            </Title>
+                            <Education />
+                        </Section>
+                    </ErrorBoundary>
+                    <ErrorBoundary>
+                        <Section>
+                            <Title>
+                                Курсы повышения квалификации
+                            </Title>
+                            <Courses />
+                        </Section>
+                    </ErrorBoundary>
+                    <ErrorBoundary>
+                        <Section>
+                            <Title>
+                                Основные источники знаний
+                            </Title>
+                            <Sources />
+                        </Section>
+                    </ErrorBoundary>
                 </Container>
                 <Contacts />
             </div>

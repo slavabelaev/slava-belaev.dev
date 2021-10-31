@@ -1,94 +1,139 @@
 import AvatarURL from "../../containers/Logo/SlavaBelaev.jpg";
-import {Avatar, Grid, ListItem, ListItemIcon, ListItemText, styled, Typography} from "@mui/material";
+import {
+    Avatar,
+    Grid, Hidden,
+    ListItem,
+    ListItemIcon,
+    ListItemSecondaryAction,
+    ListItemText,
+    styled,
+    Typography
+} from "@mui/material";
 import HomeWork from "@mui/icons-material/HomeWork";
 import Location from "@mui/icons-material/LocationOn";
+import {ReactNode} from "react";
+import {Check} from "@mui/icons-material";
 
-const Root = styled('figure')(({ theme }) => ({
-    display: 'flex',
-    margin: 0,
-    marginBottom: theme.spacing(8),
-    marginTop: theme.spacing(6),
+const Root = styled(Grid)(({ theme }) => ({
+    [theme.breakpoints.up('sm')]: {
+        marginTop: theme.spacing(6),
+    },
+    [theme.breakpoints.down('sm')]: {
+        marginTop: theme.spacing(2),
+    }
 }))
 
 const UserAvatar = styled(Avatar)(({ theme }) => ({
-    width: 200,
-    height: 200,
-    marginRight: theme.spacing(4)
+    width: '100%',
+    height: 'auto',
+    [theme.breakpoints.up('md')]: {
+        maxWidth: 200
+    },
+    [theme.breakpoints.up('sm')]: {
+        marginRight: theme.spacing(4)
+    },
+    [theme.breakpoints.down('sm')]: {
+        height: 240,
+        margin: 'auto',
+        marginBottom: theme.spacing(2),
+    }
 }))
 
 const Description = styled(Typography)(({ theme }) => ({
     marginBottom: theme.spacing(2)
 }));
 
+const UserDetails = styled('section')(({ theme }) => ({
+    [theme.breakpoints.up('sm')]: {
+        paddingRight: theme.spacing(4),
+    },
+    '& li': {
+        listStyle: 'none'
+    }
+}));
+
+const Title = styled(Typography)(({ theme }) => ({
+    marginBottom: theme.spacing(2),
+    color: theme.palette.text.primary,
+    [theme.breakpoints.up('sm')]: {
+        ...theme.typography.h3,
+    },
+    [theme.breakpoints.down('sm')]: {
+        ...theme.typography.h4,
+        textAlign: 'center',
+    }
+}));
+
+type Detail = {
+    title: ReactNode;
+    description: ReactNode;
+    icon: ReactNode;
+}
+
+const details: Detail[] = [
+    {
+        icon: '🇷🇺',
+        title: 'Русский',
+        description: 'Родной'
+    },
+    {
+        icon: '🇺🇸',
+        title: 'Английский',
+        description: 'B1'
+    },
+    {
+        icon: <HomeWork />,
+        title: 'Удаленно',
+        description: 'готов к переезду'
+    },
+    {
+        icon: <Location />,
+        title: 'Москва',
+        description: 'м. Первомайская'
+    }
+]
+
 export default function UserInfo() {
+    const renderDetail = (item: Detail, index: number) => (
+        <Grid key={index} item xs={12} sm={6} lg={3}>
+            <ListItem disableGutters>
+                <ListItemIcon>
+                    <Avatar>
+                        {item.icon}
+                    </Avatar>
+                </ListItemIcon>
+                <ListItemText
+                    primary={item.title}
+                    secondary={item.description}
+                />
+                <Hidden smUp>
+                    <ListItemSecondaryAction>
+                        <Check />
+                    </ListItemSecondaryAction>
+                </Hidden>
+            </ListItem>
+        </Grid>
+    )
+
     return (
-        <Root>
-            <UserAvatar
-                variant='rounded'
-                src={AvatarURL}
-            />
-            <figcaption>
-                <Typography color="primary" variant='h3' sx={{ mb: 2 }}>
-                    Вячеслав Беляев
-                </Typography>
-                <Description variant='body1'>
-                    Умеренный перфекционист, позитивный, честный. Люблю писать код, не люблю review-вить. В чужих конфликтах предпочитаю сохранять нейтралитет, уважаю чужие права и частную собственность.
-                </Description>
-                <Grid container>
-                    <Grid item sm={3}>
-                        <ListItem disableGutters>
-                            <ListItemIcon>
-                                <Avatar>
-                                    🇷🇺
-                                </Avatar>
-                            </ListItemIcon>
-                            <ListItemText
-                                primary="Русский"
-                                secondary="Родной"
-                            />
-                        </ListItem>
+        <Root container>
+            <Grid item xs={12} sm={5} md={3} display="flex" justifyContent="end">
+                <UserAvatar
+                    variant='rounded'
+                    src={AvatarURL}
+                />
+            </Grid>
+            <Grid item xs={12} sm={7} md={9}>
+                <UserDetails>
+                    <Title>Вячеслав Беляев</Title>
+                    <Description variant='body1'>
+                        Умеренный перфекционист, позитивный, честный. Люблю писать код, не люблю review-вить. В чужих конфликтах предпочитаю сохранять нейтралитет, уважаю чужие права и частную собственность.
+                    </Description>
+                    <Grid container>
+                        {details.map(renderDetail)}
                     </Grid>
-                    <Grid item sm={3}>
-                        <ListItem disableGutters>
-                            <ListItemIcon>
-                                <Avatar>
-                                    🇺🇸
-                                </Avatar>
-                            </ListItemIcon>
-                            <ListItemText
-                                primary="Английский"
-                                secondary="B1"
-                            />
-                        </ListItem>
-                    </Grid>
-                    <Grid item sm={3}>
-                        <ListItem disableGutters>
-                            <ListItemIcon>
-                                <Avatar>
-                                    <HomeWork />
-                                </Avatar>
-                            </ListItemIcon>
-                            <ListItemText
-                                primary="Удаленно"
-                                secondary="готов к переезду"
-                            />
-                        </ListItem>
-                    </Grid>
-                    <Grid item sm={3}>
-                        <ListItem disableGutters>
-                            <ListItemIcon>
-                                <Avatar>
-                                    <Location />
-                                </Avatar>
-                            </ListItemIcon>
-                            <ListItemText
-                                primary="Москва"
-                                secondary="м. Первомайская"
-                            />
-                        </ListItem>
-                    </Grid>
-                </Grid>
-            </figcaption>
+                </UserDetails>
+            </Grid>
         </Root>
     )
 }

@@ -1,4 +1,4 @@
-import {Divider, Link, Stack, styled, SvgIconProps, Tooltip, Typography} from "@mui/material";
+import {Container, Divider, Grid, Hidden, Link, Stack, styled, SvgIconProps, Tooltip, Typography} from "@mui/material";
 import Atlassian from "../../icons/Atlassian";
 import Confluence from "../../icons/Confluence";
 import GitHub from "../../icons/GitHub";
@@ -89,34 +89,64 @@ const GroupDivider = styled(Divider)(({ theme }) => ({
 export default function MainStack() {
     const renderItem = (item: Item) => {
         const { Icon } = item || {};
-        const iconStyle = {
-            height: 96,
-            width: 'auto'
-        };
         return (
             <StackItem>
                 <Link target="_blank" href={item.url}>
-                    <Icon fontSize="inherit" style={iconStyle} />
+                    <Hidden smDown>
+                        <Icon
+                            fontSize="inherit"
+                            style={{
+                                height: 96,
+                                width: 'auto'
+                            }}
+                        />
+                    </Hidden>
+                    <Hidden smUp>
+                        <Icon
+                            fontSize="inherit"
+                            style={{
+                                height: 48,
+                                width: 'auto'
+                            }}
+                        />
+                    </Hidden>
                 </Link>
-                <StackItemLabel>
-                    <Typography variant='h5'>
-                        {item.title}
-                    </Typography>
-                </StackItemLabel>
+                <Hidden smDown>
+                    <StackItemLabel>
+                        <Typography variant='h5'>
+                            {item.title}
+                        </Typography>
+                    </StackItemLabel>
+                </Hidden>
             </StackItem>
         )
     };
 
     const renderSecondaryItem = (item: Item) => {
         const { Icon } = item || {};
-        const iconStyle = {
-            height: 48,
-            width: 'auto'
-        };
         return (
             <Tooltip title={item.title}>
                 <Link target="_blank" href={item.url}>
-                    <Icon style={iconStyle} />
+                    <StackItem>
+                        <Hidden smDown>
+                            <Icon
+                                fontSize="inherit"
+                                style={{
+                                    height: 48,
+                                    width: 'auto'
+                                }}
+                            />
+                        </Hidden>
+                        <Hidden smUp>
+                            <Icon
+                                fontSize="inherit"
+                                style={{
+                                    height: 24,
+                                    width: 'auto'
+                                }}
+                            />
+                        </Hidden>
+                    </StackItem>
                 </Link>
             </Tooltip>
         )
@@ -124,13 +154,17 @@ export default function MainStack() {
 
     return (
         <div>
-            <Stack direction="row" alignItems="center" justifyContent="center" spacing={20}>
-                {items?.map(renderItem)}
-            </Stack>
+            <Container maxWidth="md">
+                <Stack direction="row" justifyContent="space-between" spacing={2}>
+                    {items?.map(renderItem)}
+                </Stack>
+            </Container>
             <GroupDivider />
-            <Stack direction="row" justifyContent="center" spacing={10}>
-                {secondaryItems?.map(renderSecondaryItem)}
-            </Stack>
+            <Container maxWidth="sm">
+                <Stack direction="row" justifyContent="space-between" spacing={2}>
+                    {secondaryItems?.map(renderSecondaryItem)}
+                </Stack>
+            </Container>
         </div>
     )
 }

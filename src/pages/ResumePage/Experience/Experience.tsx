@@ -1,21 +1,15 @@
 import React, {ReactNode} from 'react';
 import Timeline from '@mui/lab/Timeline';
-import TimelineItem from '@mui/lab/TimelineItem';
-import TimelineSeparator from '@mui/lab/TimelineSeparator';
-import TimelineConnector from '@mui/lab/TimelineConnector';
-import TimelineContent from '@mui/lab/TimelineContent';
-import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
-import TimelineDot from '@mui/lab/TimelineDot';
-import Typography from '@mui/material/Typography';
 import BusinessIcon from "@mui/icons-material/Business";
 import PersonIcon from "@mui/icons-material/Person";
-import WebdeloLogo from "../../logos/Webdelo";
-import AlfaLogo from "../../logos/Alfa";
-import DexLogo from "../../logos/Dex";
-import UpworkLogo from "../../logos/Upwork";
-import DevStack, {TechnologyName} from "../../components/DevStack";
-import {Link, styled} from "@mui/material";
-import {toDateString, toTimeBetween} from "./utils";
+import WebdeloLogo from "../../../logos/Webdelo";
+import AlfaLogo from "../../../logos/Alfa";
+import DexLogo from "../../../logos/Dex";
+import UpworkLogo from "../../../logos/Upwork";
+import {TechnologyName} from "../../../components/DevStack";
+import ExperienceCard from "./ExperienceCard";
+import ExperienceTimelineItem from "./ExperienceTimelineItem";
+import {Hidden} from "@mui/material";
 
 export type ExperienceItem = {
     company: {
@@ -118,69 +112,32 @@ const items: ExperienceItem[] = [
     }
 ]
 
-const Title = styled(Typography)(({ theme }) => ({
-    marginBottom: theme.spacing(1)
-}))
-
-const ExperienceList = styled('ul')(({ theme }) => ({
-    marginBottom: theme.spacing(3)
-}))
-
 export default function Experience() {
-    const renderExperience = (text: string) => (
-        <li>{text}</li>
-    )
+    const renderExperienceCard = (item: ExperienceItem) => (
+        <ExperienceCard
+            key={item.company.name}
+            item={item}
+        />
+    );
 
-    const renderItem = (item: ExperienceItem, index: number) => {
-        const isEven = index % 2 === 0;
-        const startDate = toDateString(item.startDate);
-        const endDate = item.endDate
-            ? toDateString(item.endDate)
-            : 'настоящее время';
-        const timeBetween = toTimeBetween(item.startDate, item.endDate);
-        const companyLogo = (
-            <TimelineDot color="primary">
-                {item.company.logo}
-            </TimelineDot>
-        );
-        const hasCompanyLink = item.company.url;
-        const companyLink = hasCompanyLink && (
-            <Link target="_blank" href={item.company.url}>
-                {companyLogo}
-            </Link>
-        );
-        return (
-            <TimelineItem>
-                <TimelineOppositeContent
-                    sx={{ m: 'auto 0' }}
-                    align="right"
-                    variant="body2"
-                    color="text.secondary"
-                >
-                    <Typography component="div">{startDate} — по {endDate}</Typography>
-                    <Typography component="div" variant="caption">{timeBetween}</Typography>
-                </TimelineOppositeContent>
-                <TimelineSeparator>
-                    <TimelineConnector />
-                    {companyLink || companyLogo}
-                    <TimelineConnector />
-                </TimelineSeparator>
-                <TimelineContent sx={{ py: '12px', px: 2 }}>
-                    <Title variant="h5">
-                        {item.company.name}
-                    </Title>
-                    <ExperienceList style={{ direction: isEven ? 'ltr' : 'rtl' }}>
-                        {item.experience.map(renderExperience)}
-                    </ExperienceList>
-                    <DevStack stack={item.stack || []} />
-                </TimelineContent>
-            </TimelineItem>
-        )
-    }
+    const renderExperienceTimelineItem = (item: ExperienceItem, index: number) => (
+        <ExperienceTimelineItem
+            key={item.company.name}
+            item={item}
+            isEven={index % 2 === 0}
+        />
+    );
 
     return (
-        <Timeline position="alternate">
-            {items.map(renderItem)}
-        </Timeline>
+        <div>
+            <Hidden smUp>
+                {items.map(renderExperienceCard)}
+            </Hidden>
+            <Hidden smDown>
+                <Timeline position="alternate">
+                    {items.map(renderExperienceTimelineItem)}
+                </Timeline>
+            </Hidden>
+        </div>
     );
 }

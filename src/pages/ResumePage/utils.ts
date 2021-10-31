@@ -1,8 +1,8 @@
-export const toDateString = (dateString: string) => {
+export const toDateString = (dateString: string, style: Intl.DateTimeFormatOptions['month'] = 'long') => {
     const date = new Date(dateString);
     return new Intl.DateTimeFormat('ru-RU', {
         year: 'numeric',
-        month: 'long'
+        month: style
     }).format(date);
 }
 

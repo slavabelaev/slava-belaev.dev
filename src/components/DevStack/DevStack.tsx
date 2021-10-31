@@ -129,7 +129,7 @@ export default function DevStack({ stack }: DevStackProps) {
         const item = TechnologyIcon[name];
         return (
             <Tooltip title={name}>
-                <Link target="_blank" href={item.url}>
+                <Link display="inline-flex" target="_blank" href={item.url}>
                     {item.icon}
                 </Link>
             </Tooltip>
@@ -137,7 +137,7 @@ export default function DevStack({ stack }: DevStackProps) {
     }
 
     return (
-        <IconStack alignItems="center"  direction="row" spacing={2}>
+        <IconStack alignItems="center" direction="row" spacing={2}>
             {stack?.map(renderIcon)}
         </IconStack>
     )

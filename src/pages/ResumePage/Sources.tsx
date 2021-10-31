@@ -1,43 +1,96 @@
-import {Link, Stack} from "@mui/material";
-import Udemy from "../../logos/Udemy";
-import Coursera from "../../logos/Coursera";
-import Medium from "../../logos/Medium";
-import MDN from "../../logos/MDN";
+import {Hidden, Link, styled, SvgIconProps} from "@mui/material";
+import Udemy from "../../logos/fullwidth/Udemy";
+import Coursera from "../../logos/fullwidth/Coursera";
+import Medium from "../../logos/fullwidth/Medium";
+import MDN from "../../logos/fullwidth/MDN";
 import WebDev from "../../logos/WebDev";
 import DevTo from "../../logos/DevTo";
 
+export type SourceItem = {
+    Icon: React.FC<SvgIconProps>;
+    url: string;
+    style: any;
+    smStyle: any;
+}
+
+const items: SourceItem[] = [
+    {
+        Icon: Udemy,
+        url: 'https://www.udemy.com/',
+        style: {
+            position: 'relative',
+            height: 60,
+            width: 'auto',
+            top: -5,
+        },
+        smStyle: { height: 40, width: 'auto' }
+    },
+    {
+        Icon: Coursera,
+        url: 'https://www.coursera.org/',
+        style: { height: 36, width: 'auto' },
+        smStyle: { height: 24, width: 'auto' }
+    },
+    {
+        Icon: Medium,
+        url: 'https://medium.com/',
+        style: { height: 36, width: 'auto' },
+        smStyle: { height: 20, width: 'auto' }
+    },
+    {
+        Icon: MDN,
+        url: 'https://developer.mozilla.org',
+        style: { height: 36, width: 'auto' },
+        smStyle: { height: 24, width: 'auto' }
+    },
+    {
+        Icon: WebDev,
+        url: 'https://web.dev/',
+        style: { height: 36, width: 'auto' },
+        smStyle: { height: 28, width: 'auto' }
+    },
+    {
+        Icon: DevTo,
+        url: 'https://dev.to/',
+        style: { height: 36, width: 'auto' },
+        smStyle: { height: 36, width: 'auto' }
+    },
+]
+
+const Root = styled('div')(({ theme }) => ({
+    display: 'flex',
+    gap: theme.spacing(4),
+    margin: 'auto',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    justifyContent: 'center',
+    maxWidth: theme.breakpoints.values.md
+}))
+
+const Item = styled('div')(({ theme }) => ({
+    // padding: theme.spacing(2)
+}))
+
 export default function Sources() {
+    const renderItem = (item: SourceItem) => {
+        const Icon = item.Icon;
+        return (
+            <Item>
+                <Link target="_blank" href={item.url}>
+                    <Hidden smDown>
+                        <Icon fontSize="inherit" style={item.style} />
+                    </Hidden>
+                    <Hidden smUp>
+                        <Icon fontSize="inherit" style={item.smStyle} />
+                    </Hidden>
+                </Link>
+            </Item>
+        );
+    }
+
     return (
-        <Stack alignItems="center" justifyContent="center" spacing={5}>
-            <Stack direction="row" alignItems="end" spacing={8}>
-                <Link target="_blank" href="https://www.udemy.com/">
-                    <Udemy fontSize="inherit"
-                           style={{
-                               position: 'relative',
-                               height: 70,
-                               width: 'auto',
-                               bottom: -10,
-                           }}
-                    />
-                </Link>
-                <Link target="_blank" href="https://www.coursera.org/">
-                    <Coursera fontSize="inherit" style={{ height: 40, width: 'auto' }} />
-                </Link>
-                <Link target="_blank" href="https://medium.com/">
-                    <Medium fontSize="inherit" style={{ height: 45, width: 'auto' }} />
-                </Link>
-            </Stack>
-            <Stack direction="row" spacing={8}>
-                <Link target="_blank" href="https://developer.mozilla.org/">
-                    <MDN fontSize="inherit" style={{ height: 50, width: 'auto' }} />
-                </Link>
-                <Link target="_blank" href="https://web.dev/">
-                    <WebDev fontSize="inherit" style={{ height: 50, width: 'auto' }} />
-                </Link>
-                <Link target="_blank" href="https://dev.to/">
-                    <DevTo fontSize="inherit" style={{ height: 50, width: 'auto' }} />
-                </Link>
-            </Stack>
-        </Stack>
+        <Root>
+            {items.map(renderItem)}
+        </Root>
     )
 }

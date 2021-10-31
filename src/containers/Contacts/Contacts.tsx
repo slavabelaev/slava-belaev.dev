@@ -58,7 +58,7 @@ export default function Contacts() {
         <Root>
             <RootBackdrop open={open} />
             <SpeedDial
-                ariaLabel="Slava Belaev Contacts"
+                ariaLabel="Contacts"
                 icon={<SpeedDialIcon icon={<Email />} />}
                 onClose={handleClose}
                 onOpen={handleOpen}
