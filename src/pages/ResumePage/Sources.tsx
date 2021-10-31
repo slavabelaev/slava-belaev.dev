@@ -77,10 +77,10 @@ export default function Sources() {
         return (
             <Item>
                 <Link target="_blank" href={item.url}>
-                    <Hidden smDown>
+                    <Hidden mdDown>
                         <Icon fontSize="inherit" style={item.style} />
                     </Hidden>
-                    <Hidden smUp>
+                    <Hidden mdUp>
                         <Icon fontSize="inherit" style={item.smStyle} />
                     </Hidden>
                 </Link>

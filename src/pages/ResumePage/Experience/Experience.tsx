@@ -130,10 +130,10 @@ export default function Experience() {
 
     return (
         <div>
-            <Hidden smUp>
+            <Hidden mdUp>
                 {items.map(renderExperienceCard)}
             </Hidden>
-            <Hidden smDown>
+            <Hidden mdDown>
                 <Timeline position="alternate">
                     {items.map(renderExperienceTimelineItem)}
                 </Timeline>

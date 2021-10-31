@@ -26,11 +26,8 @@ const Root = styled(Grid)(({ theme }) => ({
 const UserAvatar = styled(Avatar)(({ theme }) => ({
     width: '100%',
     height: 'auto',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
         maxWidth: 200
-    },
-    [theme.breakpoints.up('sm')]: {
-        marginRight: theme.spacing(4)
     },
     [theme.breakpoints.down('sm')]: {
         height: 240,
@@ -45,7 +42,7 @@ const Description = styled(Typography)(({ theme }) => ({
 
 const UserDetails = styled('section')(({ theme }) => ({
     [theme.breakpoints.up('sm')]: {
-        paddingRight: theme.spacing(4),
+        paddingLeft: theme.spacing(4),
     },
     '& li': {
         listStyle: 'none'
@@ -117,13 +114,13 @@ export default function UserInfo() {
 
     return (
         <Root container>
-            <Grid item xs={12} sm={5} md={3} display="flex" justifyContent="end">
+            <Grid item xs={12} sm={5} md={4} lg={3} display="flex" justifyContent="end">
                 <UserAvatar
                     variant='rounded'
                     src={AvatarURL}
                 />
             </Grid>
-            <Grid item xs={12} sm={7} md={9}>
+            <Grid item xs={12} sm={7} md={8} lg={9}>
                 <UserDetails>
                     <Title>Вячеслав Беляев</Title>
                     <Description variant='body1'>

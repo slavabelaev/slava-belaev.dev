@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {toDateString} from "../utils";
-import {Avatar, Card, CardContent, CardHeader, Collapse, Divider, IconButton, Link} from "@mui/material";
+import {Avatar, Card, CardContent, CardHeader, Collapse, Divider, IconButton, Link, styled} from "@mui/material";
 import {ExpandLess, ExpandMore} from "@mui/icons-material";
 import DevStack from "../../../components/DevStack";
 import {ExperienceItem} from "./Experience";
@@ -8,6 +8,16 @@ import {ExperienceItem} from "./Experience";
 export type ExperienceCardProps = {
     item: ExperienceItem;
 }
+
+const ListItem = styled('li')(({ theme }) => ({
+    '& + &': {
+        marginTop: theme.spacing(2)
+    }
+}))
+
+const LogoAvatar = styled(Avatar)(({ theme }) => ({
+    backgroundColor: theme.palette.primary.main
+}))
 
 export default function ExperienceCard({ item }: ExperienceCardProps) {
     const [isExpanded, setExpanded] = useState(false);
@@ -17,9 +27,9 @@ export default function ExperienceCard({ item }: ExperienceCardProps) {
         ?  'по ' + toDateString(item.endDate, 'short')
         : 'сейчас';
     const companyLogo = (
-        <Avatar color="primary">
+        <LogoAvatar>
             {item.company.logo}
-        </Avatar>
+        </LogoAvatar>
     );
     const hasCompanyLink = item.company.url;
     const companyLink = hasCompanyLink && (
@@ -29,7 +39,7 @@ export default function ExperienceCard({ item }: ExperienceCardProps) {
     );
 
     const renderExperience = (text: string) => (
-        <li>{text}</li>
+        <ListItem>{text}</ListItem>
     )
 
     const expandAction = (

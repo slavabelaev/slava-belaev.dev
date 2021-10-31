@@ -41,7 +41,7 @@ const Title = styled('div')(({ theme }) => ({
     textAlign: 'center',
     [theme.breakpoints.down('sm')]: {
         fontSize: theme.typography.h5.fontSize,
-        marginBottom: theme.spacing(3),
+        marginBottom: theme.spacing(2),
     },
     [theme.breakpoints.up('sm')]: {
         fontSize: theme.typography.h4.fontSize,
@@ -49,8 +49,13 @@ const Title = styled('div')(({ theme }) => ({
     }
 }))
 
+const TotalExperience = styled('span')(({ theme }) => ({
+    color: theme.palette.info.main
+}))
+
 export default function ResumePage() {
     const [isFaded, setFaded] = useState(false);
+    const totalExperienceTime = toTimeBetween('2013-05-01', new Date());
 
     useEffect(() => {
         setFaded(true);
@@ -66,6 +71,12 @@ export default function ResumePage() {
             </Hidden>
             Portfolio
         </LinkButton>
+    )
+
+    const totalExperience = (
+        <TotalExperience>
+            {totalExperienceTime}
+        </TotalExperience>
     )
 
     return (
@@ -92,7 +103,7 @@ export default function ResumePage() {
                     <ErrorBoundary>
                         <Section>
                             <Title>
-                                Опыт работы {toTimeBetween('2013-05-01', new Date())}
+                                Опыт работы — {totalExperience}
                             </Title>
                             <Experience />
                         </Section>

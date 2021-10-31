@@ -230,10 +230,10 @@ export default function Courses() {
 
     return (
         <div>
-            <Hidden smDown>
+            <Hidden mdDown>
                 {timelineCourses}
             </Hidden>
-            <Hidden smUp>
+            <Hidden mdUp>
                 {courseList}
             </Hidden>
         </div>

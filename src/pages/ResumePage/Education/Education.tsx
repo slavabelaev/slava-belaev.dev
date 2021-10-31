@@ -43,7 +43,7 @@ export function EducationCard({ item }: EducationCardProps) {
     );
 
     const subheader = (
-        <Typography color="inherit" sx={{ mt: 1 }}>
+        <Typography color="textSecondary" sx={{ mt: 1 }}>
             {startDate} — по {endDate}
         </Typography>
     );
@@ -78,7 +78,7 @@ export default function Education() {
     )
 
     const timeline = (
-        <Hidden smDown>
+        <Hidden mdDown>
             <Timeline position="alternate">
                 {items.map(renderTimelineItem)}
             </Timeline>
@@ -86,7 +86,7 @@ export default function Education() {
     );
 
     const list = (
-        <Hidden smUp>
+        <Hidden mdUp>
             {items.map(renderCard)}
         </Hidden>
     );
