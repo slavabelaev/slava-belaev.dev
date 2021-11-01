@@ -27,14 +27,10 @@ export const contacts = [
 
 export type Contact = typeof contacts[0];
 
-const Root = styled('div')(({ theme }) => ({
+const Root = styled(SpeedDial)(({ theme }) => ({
     position: 'fixed',
     bottom: 16,
     right: 16
-}))
-
-const RootBackdrop = styled(Backdrop)(({ theme }) => ({
-    zIndex: -1
 }))
 
 export default function Contacts() {
@@ -55,16 +51,14 @@ export default function Contacts() {
     );
 
     return (
-        <Root>
-            <SpeedDial
-                ariaLabel="Contacts"
-                icon={<SpeedDialIcon icon={<Email />} />}
-                onClose={handleClose}
-                onOpen={handleOpen}
-                open={open}
-            >
-                {open && contacts.map(renderAction)}
-            </SpeedDial>
+        <Root
+            ariaLabel="Contacts"
+            icon={<SpeedDialIcon icon={<Email />} />}
+            onClose={handleClose}
+            onOpen={handleOpen}
+            open={open}
+        >
+            {open && contacts.map(renderAction)}
         </Root>
     );
 }
