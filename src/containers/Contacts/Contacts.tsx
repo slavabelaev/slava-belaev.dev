@@ -56,7 +56,6 @@ export default function Contacts() {
 
     return (
         <Root>
-            <RootBackdrop open={open} />
             <SpeedDial
                 ariaLabel="Contacts"
                 icon={<SpeedDialIcon icon={<Email />} />}
@@ -64,7 +63,7 @@ export default function Contacts() {
                 onOpen={handleOpen}
                 open={open}
             >
-                {contacts.map(renderAction)}
+                {open && contacts.map(renderAction)}
             </SpeedDial>
         </Root>
     );
