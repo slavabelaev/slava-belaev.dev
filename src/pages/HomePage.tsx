@@ -23,7 +23,7 @@ const BodyContainer = styled(Container)(({ theme }) => ({
         backgroundRepeat: 'no-repeat',
         backgroundPosition: '100% 100%',
         backgroundSize: '95vh',
-        opacity: .025,
+        opacity: .075,
         zIndex: -1,
         [theme.breakpoints.down('sm')]: {
             backgroundPosition: '-15% 100%',

@@ -56,6 +56,10 @@ const IconGroup = styled('div')(({ theme }) => ({
     marginLeft: theme.spacing(1),
 }))
 
+const StyledAppBar = styled(AppBar)(({ theme }) => ({
+    background: 'linear-gradient(135deg, #212121, #121212)'
+}))
+
 export type HeaderProps = {
     title: ReactNode;
     action?: ReactNode;
@@ -90,7 +94,7 @@ export default function Header({ title, action }: HeaderProps) {
 
     return (
         <Fade in={fadeIn} timeout={1000}>
-            <AppBar position="sticky">
+            <StyledAppBar position="sticky">
                 <Toolbar>
                     <Hidden smUp>
                         <Logo />
@@ -123,7 +127,7 @@ export default function Header({ title, action }: HeaderProps) {
                         </Hidden>
                     </Aside>
                 </Toolbar>
-            </AppBar>
+            </StyledAppBar>
         </Fade>
     );
 }

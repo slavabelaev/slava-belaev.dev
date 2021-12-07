@@ -24,6 +24,10 @@ const Description = styled(Typography)(({ theme }) => ({
     whiteSpace: 'nowrap'
 }))
 
+const StyledCard = styled(Card)(({ theme }) => ({
+    background: 'linear-gradient(45deg, #212121, #000)'
+}))
+
 export default function ProjectCard({ className, project }: ProjectCardProps) {
     const [fadeIn, setFadeIn] = useState(false);
     const [previews, setPreviews] = useState<any[]>([]);
@@ -50,7 +54,7 @@ export default function ProjectCard({ className, project }: ProjectCardProps) {
 
     return (
         <Fade in={fadeIn} timeout={1000}>
-            <Card className={className}>
+            <StyledCard className={className}>
                 <a data-fancybox={id}
                    rel="noopener"
                    href={previews?.[0]}
@@ -86,7 +90,7 @@ export default function ProjectCard({ className, project }: ProjectCardProps) {
                         Source
                     </Button>
                 </CardActions>
-            </Card>
+            </StyledCard>
         </Fade>
     )
 };
