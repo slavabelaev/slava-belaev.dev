@@ -121,7 +121,7 @@ export default function ResumePage() {
 
                     <AnimatedSection>
                         <Title>
-                            Специальное образование
+                            Образование
                         </Title>
                         <Education />
                     </AnimatedSection>
@@ -135,7 +135,7 @@ export default function ResumePage() {
 
                     <AnimatedSection>
                         <Title>
-                            Основные источники знаний
+                            Источники знаний
                         </Title>
                         <Sources />
                     </AnimatedSection>
