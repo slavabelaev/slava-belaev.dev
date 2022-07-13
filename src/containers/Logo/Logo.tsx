@@ -1,7 +1,7 @@
 import {Avatar, styled, Typography} from "@mui/material";
 import React from "react";
 import {Link} from "react-router-dom";
-import AvatarSrc from "./SlavaBelaev.jpg";
+import avatarURL from "./SlavaBelaev.jpg";
 
 const Root = styled(Link)(({ theme }) => ({
     display: 'flex',
@@ -26,7 +26,7 @@ export default function Logo() {
         <Root to="/">
             <UserAvatar
                 alt="Slava Belaev"
-                src={AvatarSrc}
+                src={avatarURL}
             />
             <Typography variant="h6">
                 Slava B.

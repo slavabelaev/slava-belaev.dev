@@ -1,7 +1,7 @@
 import AvatarURL from "../../containers/Logo/SlavaBelaev.jpg";
 import {
     Avatar,
-    Grid, Hidden,
+    Grid, Hidden, Link,
     ListItem,
     ListItemIcon,
     ListItemSecondaryAction,
@@ -13,6 +13,7 @@ import HomeWork from "@mui/icons-material/HomeWork";
 import Location from "@mui/icons-material/LocationOn";
 import {ReactNode} from "react";
 import {Check} from "@mui/icons-material";
+import {contacts} from "../../constants/contacts";
 
 const Root = styled(Grid)(({ theme }) => ({
     [theme.breakpoints.up('sm')]: {
@@ -124,7 +125,7 @@ export default function UserInfo() {
                 <UserDetails>
                     <Title>Вячеслав Беляев</Title>
                     <Description variant='body1'>
-                        Умеренный перфекционист, позитивный, честный. Люблю писать код, не люблю review-вить. Хороший код восхищает, плохой раздражает.
+                        На опыте, перфекционист, трудолюб. Пишу код, за который не стыдно перед дедушкой Мартином. Люблю кино, сериалы и неглубокое погружение в себя. Работаю за деньги. <Link href={contacts.telegram.url}>It's match</Link>?
                     </Description>
                     <Grid container>
                         {details.map(renderDetail)}

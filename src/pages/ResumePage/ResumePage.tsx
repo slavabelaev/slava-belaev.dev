@@ -81,7 +81,7 @@ export default function ResumePage() {
             startIcon={<Apps />}
         >
             <Hidden smDown>
-                My&nbsp;
+                See&nbsp;
             </Hidden>
             Portfolio
         </LinkButton>

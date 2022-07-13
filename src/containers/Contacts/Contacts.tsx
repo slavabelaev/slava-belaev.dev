@@ -1,31 +1,10 @@
 import * as React from 'react';
-import Backdrop from '@mui/material/Backdrop';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
 import {styled} from '@mui/styles';
-import Telegram from '../../icons/links/Telegram';
-import {AlternateEmail, Email, WhatsApp} from "@mui/icons-material";
-
-export const contacts = [
-    {
-        icon: <AlternateEmail />,
-        title: 'Email',
-        url: 'mailto:slav@belaev.dev'
-    },
-    {
-        icon: <WhatsApp />,
-        title: 'WhatsApp',
-        url: 'https://wa.me/79771771877'
-    },
-    {
-        icon: <Telegram />,
-        title: 'Telegram',
-        url: 'tg://resolve?domain=slavabelaev'
-    },
-];
-
-export type Contact = typeof contacts[0];
+import {Email} from "@mui/icons-material";
+import {Contact, contacts} from "../../constants/contacts";
 
 const Root = styled(SpeedDial)(({ theme }) => ({
     position: 'fixed',
@@ -58,7 +37,7 @@ export default function Contacts() {
             onOpen={handleOpen}
             open={open}
         >
-            {open && contacts.map(renderAction)}
+            {open && Object.values(contacts).map(renderAction)}
         </Root>
     );
 }

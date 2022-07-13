@@ -37,7 +37,7 @@ export default function HomePage() {
             to={ROUTE_PATH.RESUME}
             startIcon={<Article />}
         >
-            My Resume
+            See Resume
         </LinkButton>
     );
 
